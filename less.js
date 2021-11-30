@@ -20,6 +20,7 @@ let app = new Vue ({
        
         picked:[],
         cart: [],
+        searchCart: '',
         
     },
 
@@ -64,7 +65,7 @@ let app = new Vue ({
             // sort the 'products' array and return it
             return this.Lessons.sort(compare);
         },
-        
+
         checked(){
             if(this.cartItemCount > 0 ){
             return true;
@@ -85,6 +86,17 @@ let app = new Vue ({
         picker() {
             return this.picked.length || '';
         },
+
+        Searchas() {
+            let seeL = this.Lessons
+            
+            if (this.searchCart != '') {
+              seeL = seeL.filter((Lessons) => {
+                return Lessons.Subject.toUpperCase().includes(this.searchCart.toUpperCase())
+                  })
+                }
+              return seeL
+            },
 
         sortedSubject(){
             if(this.picker > 0){
