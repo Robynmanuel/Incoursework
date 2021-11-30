@@ -25,12 +25,11 @@
                <div id="gt">
                 <input type="radio" id="asc" ref="asc" value="Ascending" v-model="picked">
                   <label for="asc">Ascending</label>
-                <input type="radio" id="dsc" ref="dsc" value="Descending" v-model="picked">
+                <input type="radio" id="dsc" ref="dsc" value="Descending" v-model="hall">
                   <label for="dsc">Descending</label><br>
                 <button v-on:click="sortedSubject()" class="ss">Subject</button>
                 <button v-on:click="sortedLocation()" class="ll">Location</button><br>
                 <button v-on:click="sortedCost()" class="pp">Price</button>
-                <button class="sp">Spaces</button>
                </div>
                </div>
             </div>
@@ -55,7 +54,7 @@
                 <div class="arrlis">
                     <h2>{{Less.Subject}}</h2>
                     <em>{{Less.Location}}</em><br><br>
-                    <em>{{Less.Cost}}</em>
+                    <em><i class="fas fa-pound-sign"></i>{{Less.Cost}}</em>
                      <em><h3>No of Spaces: {{Less.Spaces}}</h3></em>
                      <button v-on:click='addToCart' id="adc" 
                     >Add To Cart</button>
