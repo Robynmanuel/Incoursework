@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <title>After School Lesson</title>
+    <link rel="stylesheet" href="less.css">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <header id="hd">
+            <h1>{{Sitename}}</h1>     
+            
+        </header>
+        
+        <main>
+           <div id="fr">           
+               <div id="kh">
+                <button id="ck" v-on:click="showCheckout"> 
+                    {{ cartItemCount}} in<span class="fas fa-cart-plus"></span> 
+                     Cart</button> 
+               </div>
+           </div>
+             
+                   
+         <div v-if='showLesson'>
+            <div id="app">
+                <div v-for="Less in Lessons" id="ap">
+                    <img v-bind:src='Less.image' id="im" width="75px" height="90px">
+                    <div id="sub">
+                <div class="arrlis">
+                    <h2>{{Less.Subject}}</h2>
+                    <em>{{Less.Location}}</em><br><br>
+                    <em>{{Less.Cost}}</em>
+                     <em><h3>No of Spaces: {{Less.Spaces}}</h3></em>
+                     <button v-on:click='addToCart' id="adc" 
+                    >Add To Cart</button>
+                </div>
+                    </div>
+    
+                 </div>
+            </div>
+         </div>
+
+         <div v-else>
+             <h1> Cart List</h1>
+           
+         </div>
+        
+        </main><br><br>
+    </div>
+
+  <script>
+
+let app = new Vue ({
+    el: '#app',
+    data: {
+        Sitename: 'After School Lessons',
+        showLesson: true,
+        "Lessons": [
+            {'id':1001, 'Subject': 'Maths',   'Location':'London', 'Cost': '$100', 'Spaces':5, 'image':'photos/math.png'},
+            {'id':1002, 'Subject': 'English', 'Location':'York', 'Cost': '$200', 'Spaces':5, 'image':'photos/eng.png'},
+            {'id':1003, 'Subject': 'Chemistry', 'Location':'Oxford', 'Cost': '$110', 'Spaces':5, 'image':'photos/chem.png'},
+            {'id':1004, 'Subject': 'Biology', 'Location':'Conventry', 'Cost': '$80', 'Spaces':5, 'image':'photos/bio.png'},
+            {'id':1005, 'Subject': 'Economics', 'Location':'Manchester', 'Cost': '$70', 'Spaces':5, 'image':'photos/econ.png'},
+            {'id':1006, 'Subject': 'Physics', 'Location':'Cambrigde', 'Cost': '$90', 'Spaces':5, 'image':'photos/physics.png'},
+            {'id':1007, 'Subject': 'Literature', 'Location':'Bristol', 'Cost': '$65', 'Spaces':5, 'image':'photos/lit.gif'},
+            {'id':1008, 'Subject': 'History', 'Location':'Liverpool', 'Cost': '$120', 'Spaces':5, 'image':'photos/history.png'},
+            {'id':1009, 'Subject': 'Geography ', 'Location':'Newcastle', 'Cost': '$105', 'Spaces':5, 'image':'photos/geo.png'},
+            {'id':1010, 'Subject': 'Art & Design', 'Location':'Nottingham', 'Cost': '$77', 'Spaces':5, 'image':'photos/art.png'},
+            {'id':1011,'Subject': 'Music', 'Location':'Birmingham', 'Cost': '$50', 'Spaces':5, 'image':'photos/music.png'},
+            {'id':1012,'Subject': 'Physical education ', 'Location':'Sheffield', 'Cost': '$40', 'Spaces':5, 'image':'photos/physical.png'},
+        ],
+       
+
+        cart: [],
+        
+    },
+
+    methods: {
+       addToCart(){
+           this.cart.push(this.Lessons.id);
+        },
+
+         showCheckout() {
+            this.showLesson = this.showLesson ? false : true;
+        },
+ 
+    },
+
+    computed: {
+
+        cartItemCount() {
+            return this.cart.length || '';
+         },
+
+        picker() {
+            return this.picked.length || '';
+        },
+
+      
+ 
+
+    },
+
+});
+  </script>
+</body>
+</html>
