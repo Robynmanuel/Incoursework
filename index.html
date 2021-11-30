@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <title>After School Lesson</title>
+    <link rel="stylesheet" href="less.css">
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <header id="hd">
+            <h1>{{Sitename}}</h1>     
+            
+        </header>
+        
+        <main>
+            <div id="oo">
+                <button onclick="srt()" id="ik">Sort Lessons:</button>
+                <input type="text" v-model="searchCart" placeholder="Search Lesson...." class="tx"></input>
+            <div id="myDIV">
+               <div id="gt">
+                <input type="radio" id="asc" ref="asc" value="Ascending" v-model="picked">
+                  <label for="asc">Ascending</label>
+                <input type="radio" id="dsc" ref="dsc" value="Descending" v-model="picked">
+                  <label for="dsc">Descending</label><br>
+                <button v-on:click="sortedSubject()" class="ss">Subject</button>
+                <button v-on:click="sortedLocation()" class="ll">Location</button><br>
+                <button v-on:click="sortedCost()" class="pp">Price</button>
+                <button class="sp">Spaces</button>
+               </div>
+               </div>
+            </div>
+
+           <div id="fr">           
+            <div id="kh">
+                <button id="ck" v-if="checked()" v-on:click="showCheckout"> 
+                    {{ cartItemCount}} in<span class="fas fa-cart-plus"></span> 
+                     Cart</button> 
+                     <button disabled="disabled" 
+                     v-else id="hk"><span class="fas fa-cart-plus"></span>
+                     Cart</button>
+               </div>
+           </div>
+             
+                   
+         <div v-if='showLesson'>
+            <div id="app">
+                <div v-for="Less in Searchas" id="ap">
+                    <img v-bind:src='Less.image' id="im" width="75px" height="90px">
+                    <div id="sub">
+                <div class="arrlis">
+                    <h2>{{Less.Subject}}</h2>
+                    <em>{{Less.Location}}</em><br><br>
+                    <em>{{Less.Cost}}</em>
+                     <em><h3>No of Spaces: {{Less.Spaces}}</h3></em>
+                     <button v-on:click='addToCart' id="adc" 
+                    >Add To Cart</button>
+                </div>
+                    </div>
+    
+                 </div>
+            </div>
+         </div>
+
+         <div v-else>
+             <h1> Cart List</h1>
+             <p><h2>{{cartItemCount}} items added to the cart</h2></p>
+             <button class="open-button" onclick="openForm()">Check out</button>
+             <div class="form-popup" id="myForm">
+                <form class="form-container">
+              
+                  <label for="name"><b>Name</b></label>
+                  <input id="fname" v-model="hall" type="text" placeholder="Enter Name" name="name" >
+              
+                  <label for="email"><b>Email</b></label>
+                  <input id="email"  type="text" placeholder="Enter Email" name="email" >
+
+                  <label for="ph"><b>Phone</b></label>
+                  <input id="phone" v-model="validd" type="tel" placeholder="Enter Phone" name="ph" >
+              
+                  <button type="submit" class="btn" v-on:click='valid' >Check out</button>
+                  
+                  
+                  <button type="button" class="btn cancel" onclick="closeForm()">Back</button>
+                </form>
+              </div>
+         </div>
+        
+        </main><br><br>
+    </div>
+    <script src="less.js"></script>
+</body>
+</html>
