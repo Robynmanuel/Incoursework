@@ -19,6 +19,7 @@ let app = new Vue ({
         ],
        
         picked:[],
+        validd: [],
         cart: [],
         searchCart: '',
         
@@ -74,6 +75,45 @@ let app = new Vue ({
                   return false;
                   }
         },
+
+        valid() {
+            var fname = document.getElementById('fname').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+        
+            var nameRGEX = /^[\D\s\D\s\D]+$/
+            var emailRGEX = /^[\w @\w\.com\s]+$/
+            var phoneRGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+        
+            var nameRes = nameRGEX.test(fname);
+            var emailRes = emailRGEX.test(email);
+            var phoneRes = phoneRGEX.test(phone);
+            
+            if(nameRes == false) {
+                alert('Please enter a valid name');
+                return false;
+            }
+            if(emailRes == false) {
+                alert('Please enter a valid email');
+                return false;
+            }
+            if(phoneRes == false) {
+                alert('Please enter a valid Phone number');
+                return false;
+            }else{
+                alert('Your order has been confirmed');
+            }
+            return true;
+          },
+          
+          val(){
+            if(this.validd > 0){
+            return true;
+            }
+                  else{
+                      return false;
+                  }
+                }
  
     },
 
