@@ -64,7 +64,15 @@ let app = new Vue ({
             // sort the 'products' array and return it
             return this.Lessons.sort(compare);
         },
+        
+        checked(){
+            if(this.cartItemCount > 0 ){
+            return true;
+            }else{
 
+                  return false;
+                  }
+        },
  
     },
 
