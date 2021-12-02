@@ -20,10 +20,12 @@ let app = new Vue ({
         ],
        
         picked: '',
-        validd: '',
         hall: '',
         cart: [],
         searchCart: '',
+        input1: '',
+        input2: '',
+        input3: '',
         
     },
 
@@ -145,14 +147,7 @@ let app = new Vue ({
             return true;
           },
           
-          val(){
-            if(this.validd > 0){
-            return true;
-            }
-                  else{
-                      return false;
-                  }
-                }
+        
  
     },
 
@@ -162,6 +157,13 @@ let app = new Vue ({
             return this.cart.length || '';
          },
 
+         val(){
+            if(this.input1 != '' && this.input2 != '' && this.input3 != ''){
+            return true;
+            }else{
+                      return false;
+                  }
+                },
 
         Searchas() {
             let seeL = this.Lessons

@@ -23,9 +23,9 @@
                 <input type="text" v-model="searchCart" placeholder="Search Lesson...." class="tx"></input>
             <div id="myDIV">
                <div id="gt">
-                <input type="radio" id="asc" ref="asc" value="Ascending" v-model="picked">
+                <input type="checkbox" id="asc" name ="sort" value="Ascending" v-model="picked">
                   <label for="asc">Ascending</label>
-                <input type="radio" id="dsc" ref="dsc" value="Descending" v-model="hall">
+                <input type="checkbox" id="dsc" name ="sort" value="Descending" v-model="hall">
                   <label for="dsc">Descending</label><br>
                 <button v-on:click="sortedSubject()" class="ss">Subject</button>
                 <button v-on:click="sortedLocation()" class="ll">Location</button><br>
@@ -73,16 +73,19 @@
                 <form class="form-container">
               
                   <label for="name"><b>Name</b></label>
-                  <input id="fname" v-model="hall" type="text" placeholder="Enter Name" name="name" >
+                  <input id="fname" v-model="input1"type="text" placeholder="Enter Name" name="name" >
               
                   <label for="email"><b>Email</b></label>
-                  <input id="email"  type="text" placeholder="Enter Email" name="email" >
+                  <input id="email" v-model="input2" type="text" placeholder="Enter Email" name="email" >
 
                   <label for="ph"><b>Phone</b></label>
-                  <input id="phone" v-model="validd" type="tel" placeholder="Enter Phone" name="ph" >
+                  <input id="phone" v-model="input3" type="tel" placeholder="Enter Phone" name="ph" >
               
-                  <button type="submit" class="btn" v-on:click='valid' >Check out</button>
-                  
+                  <div>
+                    <button type="submit" class="btn" v-on:click='valid' v-if="val">Check out</button>
+                    <button disabled="disabled" class="btn cancel"
+                    v-else>Check out</button>
+                  </div>
                   
                   <button type="button" class="btn cancel" onclick="closeForm()">Back</button>
                 </form>
