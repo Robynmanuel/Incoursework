@@ -4,6 +4,7 @@ let app = new Vue ({
         Sitename: 'After School Lessons',
         showLesson: true,
         ascending: true,
+        // list of json objects in an array, one json object for each lesson
         "Lessons": [
             {'id':1001, 'Subject': 'Maths',   'Location':'London', 'Cost': 100, 'Spaces':5, 'image':'photos/math.png'},
             {'id':1002, 'Subject': 'English', 'Location':'York', 'Cost': 200, 'Spaces':5, 'image':'photos/eng.png'},
@@ -108,6 +109,7 @@ let app = new Vue ({
             return this.Lessons.sort(compare);
         },
 
+        // function to enable or disable the cart button
         checked(){
             if(this.cartItemCount > 0 ){
             return true;
@@ -117,14 +119,15 @@ let app = new Vue ({
                   }
         },
 
+        // Regular expressions for the input text in checkout form
         valid() {
             var fname = document.getElementById('fname').value;
             var email = document.getElementById('email').value;
             var phone = document.getElementById('phone').value;
         
-            var nameRGEX = /^[\D\s\D\s\D]+$/
-            var emailRGEX = /^[\w @\w\.com\s]+$/
-            var phoneRGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+            var nameRGEX = /^[A-Za-z]+[\s][A-Za-z]+$/;
+            var emailRGEX = /^[\w @\w\.com\s]+$/;
+            var phoneRGEX = /^[0-9]{1,3}[\s][0-9]{3}[\s][0-9]{3}[\s][0-9]{4,6}$/;
         
             var nameRes = nameRGEX.test(fname);
             var emailRes = emailRGEX.test(email);
@@ -156,7 +159,7 @@ let app = new Vue ({
         cartItemCount() {
             return this.cart.length || '';
          },
-
+       // function to enable or disable the checkout button inside the cart page
          val(){
             if(this.input1 != '' && this.input2 != '' && this.input3 != ''){
             return true;
@@ -164,18 +167,21 @@ let app = new Vue ({
                       return false;
                   }
                 },
-
+        // search function 
         Searchas() {
+            // creating an instance of the array
             let seeL = this.Lessons
             
+            // search property
             if (this.searchCart != '') {
               seeL = seeL.filter((Lessons) => {
                 return Lessons.Subject.toUpperCase().includes(this.searchCart.toUpperCase())
                   })
                 }
+                // return the array if nothing is searched for
               return seeL
             },
-
+     // sort function for the subject button
         sortedSubject(){
             if(this.picked != ''){
             return this.sortedAsc;
@@ -183,7 +189,7 @@ let app = new Vue ({
             return this.sortedDsc;
         }
         }, 
-
+// sort function for the location button
         sortedLocation(){
             if(this.picked != ''){
             return this.sortedAsc1;
@@ -191,7 +197,7 @@ let app = new Vue ({
             return this.sortedDsc1;
         }
         }, 
-
+// sort function for the price button
         sortedCost(){
             if(this.picked != ''){
             return this.sortedAsc2;

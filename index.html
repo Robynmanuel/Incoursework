@@ -13,55 +13,55 @@
 <body>
     <div id="app">
         <header id="hd">
-            <h1>{{Sitename}}</h1>     
-            
+            <h1>{{Sitename}}</h1>          
         </header>
         
         <main>
             <div id="oo">
                 <button onclick="srt()" id="ik">Sort Lessons:</button>
                 <input type="text" v-model="searchCart" placeholder="Search Lesson...." class="tx"></input>
-            <div id="myDIV">
-               <div id="gt">
+                <div id="myDIV">
+                <div id="gt">
                 <input type="checkbox" id="asc" name ="sort" value="Ascending" v-model="picked">
-                  <label for="asc">Ascending</label>
+                <label for="asc">Ascending</label>
                 <input type="checkbox" id="dsc" name ="sort" value="Descending" v-model="hall">
-                  <label for="dsc">Descending</label><br>
+                <label for="dsc">Descending</label><br>
                 <button v-on:click="sortedSubject()" class="ss">Subject</button>
                 <button v-on:click="sortedLocation()" class="ll">Location</button><br>
                 <button v-on:click="sortedCost()" class="pp">Price</button>
-               </div>
-               </div>
+                </div>
+                </div>
             </div>
 
            <div id="fr">           
             <div id="kh">
                 <button id="ck" v-if="checked()" v-on:click="showCheckout"> 
-                    {{ cartItemCount}} in<span class="fas fa-cart-plus"></span> 
-                     Cart</button> 
-                     <button disabled="disabled" 
-                     v-else id="hk"><span class="fas fa-cart-plus"></span>
-                     Cart</button>
-               </div>
+                {{ cartItemCount}} in<span class="fas fa-cart-plus"></span> 
+                Cart</button> 
+                <button disabled="disabled" 
+                v-else id="hk"><span class="fas fa-cart-plus"></span>
+                Cart</button>
+                </div>
            </div>
              
                    
          <div v-if='showLesson'>
             <div id="app">
                 <div v-for="Less in Searchas" id="ap">
-                    <img v-bind:src='Less.image' id="im" width="75px" height="90px">
-                    <div id="sub">
+                <img v-bind:src='Less.image' id="im" width="75px" height="90px">
+
+                <div id="sub">
                 <div class="arrlis">
-                    <h2>{{Less.Subject}}</h2>
-                    <em>{{Less.Location}}</em><br><br>
-                    <em><i class="fas fa-pound-sign"></i>{{Less.Cost}}</em>
-                     <em><h3>No of Spaces: {{Less.Spaces}}</h3></em>
-                     <button v-on:click='addToCart' id="adc" 
-                    >Add To Cart</button>
+                <h2>{{Less.Subject}}</h2>
+                <em>{{Less.Location}}</em><br><br>
+                <em><i class="fas fa-pound-sign"></i>{{Less.Cost}}</em>
+                <em><h3>No of Spaces: {{Less.Spaces}}</h3></em>
+                <button v-on:click='addToCart' id="adc" 
+                >Add To Cart</button>
                 </div>
-                    </div>
-    
-                 </div>
+                </div>
+                
+                </div>
             </div>
          </div>
 
