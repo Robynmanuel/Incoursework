@@ -1,39 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <title>After School Lesson</title>
-    <link rel="stylesheet" href="less.css">
-    <script src="https://unpkg.com/vue"></script>
-</head>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Fetch Lessons</title>
+        <!-- Load the Vue.js as a JavaScript library -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        <link rel="stylesheet" href="less.css">
+    </head>
+
 <body>
     <div id="app">
         <header id="hd">
             <h1>{{Sitename}}</h1>          
         </header>
-        
-        <main>
-            <div id="oo">
-                <button onclick="srt()" id="ik">Sort Lessons:</button>
-                <input type="text" v-model="searchCart" placeholder="Search Lesson...." class="tx"></input>
-                <div id="myDIV">
-                <div id="gt">
-                <input type="checkbox" id="asc" name ="sort" value="Ascending" v-model="picked">
-                <label for="asc">Ascending</label>
-                <input type="checkbox" id="dsc" name ="sort" value="Descending" v-model="hall">
-                <label for="dsc">Descending</label><br>
-                <button v-on:click="sortedSubject()" class="ss">Subject</button>
-                <button v-on:click="sortedLocation()" class="ll">Location</button><br>
-                <button v-on:click="sortedCost()" class="pp">Price</button>
-                </div>
-                </div>
-            </div>
-
-           <div id="fr">           
+      
+        <div id="fr">           
             <div id="kh">
                 <button id="ck" v-if="checked()" v-on:click="showCheckout"> 
                 {{ cartItemCount}} in<span class="fas fa-cart-plus"></span> 
@@ -43,57 +26,177 @@
                 Cart</button>
                 </div>
            </div>
-             
-                   
-         <div v-if='showLesson'>
-            <div id="app">
-                <div v-for="Less in Searchas" id="ap">
-                <img v-bind:src='Less.image' id="im" width="75px" height="90px">
-
-                <div id="sub">
-                <div class="arrlis">
-                <h2>{{Less.Subject}}</h2>
-                <em>{{Less.Location}}</em><br><br>
-                <em><i class="fas fa-pound-sign"></i>{{Less.Cost}}</em>
-                <em><h3>No of Spaces: {{Less.Spaces}}</h3></em>
-                <button v-on:click='addToCart' id="adc" 
-                >Add To Cart</button>
-                </div>
-                </div>
-                
-                </div>
+          
+          
+           <div v-if='showLesson'>
+               <div  id="real">
+                   <div id="real1">
+            <div v-for="im in images" class="lessonlist1">
+                <img v-bind:src="im.Image" alt="" width="100px" height="100px">
+               </div>
             </div>
-         </div>
+            <div id="real2">
+        <div v-for="lesson in lessons" class="lessonlist">
+            <div id="sub">
+                <h2>Subject: {{ lesson.topic}} </h2>
+                <em>Location: {{ lesson.location }}</em><br><br>
+                <em>Price: {{ lesson.price }} </em>
+                <em><h3>Spaces: {{ lesson.space }} </h3></em>
+                <button id="adc" v-on:click='addToCart'
+                >Add To Cart</button>
+                </div><br><br><br>
+            </div>
+</div>
+</div>
+</div>
 
-         <div v-else>
-             <h1> Cart List</h1>
-             <p><h2>{{cartItemCount}} items added to the cart</h2></p>
-             <button class="open-button" onclick="openForm()">Check out</button>
-             <div class="form-popup" id="myForm">
-                <form class="form-container">
-              
-                  <label for="name"><b>Name</b></label>
-                  <input id="fname" v-model="input1"type="text" placeholder="Enter Name" name="name" >
-              
-                  <label for="email"><b>Email</b></label>
-                  <input id="email" v-model="input2" type="text" placeholder="Enter Email" name="email" >
 
-                  <label for="ph"><b>Phone</b></label>
-                  <input id="phone" v-model="input3" type="tel" placeholder="Enter Phone" name="ph" >
-              
-                  <div>
-                    <button type="submit" class="btn" v-on:click='valid' v-if="val">Check out</button>
-                    <button disabled="disabled" class="btn cancel"
-                    v-else>Check out</button>
-                  </div>
-                  
-                  <button type="button" class="btn cancel" onclick="closeForm()">Back</button>
-                </form>
-              </div>
-         </div>
-        
-        </main><br><br>
+<div v-else>
+    <div class="chr"> 
+    <h1> Cart List</h1>
+    <p><h2>{{cartItemCount}} items added to the cart</h2></p>
     </div>
-    <script src="less.js"></script>
+    <button class="open-button" onclick="openForm()">Check out</button>
+    <div class="form-popup" id="myForm">
+       <form action="/orders" method="POST" class="form-container" >
+     
+         <label for="name"><b>Name</b></label>
+         <input id="fname" type="text" placeholder="Enter Name" name="name" >
+     
+         <label for="ph"><b>Phone</b></label>
+         <input id="phone" type="tel" placeholder="Enter Phone" name="phone number" >
+
+         <label for="name"><b>Lesson ID</b></label>
+         <input id="fname" type="text" placeholder="Enter Lesson ID" name="lesson ID" >
+
+         <label for="name"><b>Number of space</b></label>
+         <input id="fname" type="text" placeholder="Enter Name" name="number of space" >
+         <div>
+           <button type="submit" class="btn">Check out</button>
+           
+         </div>
+         
+         <button type="button" class="btn cancel" onclick="closeForm()">Back</button>
+       </form>
+     </div>
+</div>
+
+</div>
+
+   
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data: {
+                lessons: '',
+                images: '',
+                Sitename: 'After School Lessons',
+                cart: [],
+                showLesson: true, 
+                input1: '',
+                input2: '',
+                input3: '',
+            },
+            mounted:function(){
+                this.displayData() //this method will execute at pageload
+            },
+
+            methods: {
+                addToCart(){
+           this.cart.push(this.lessons.id);
+        },
+
+        showCheckout() {
+            this.showLesson = this.showLesson ? false : true;
+        },
+ 
+        checked(){
+            if(this.cartItemCount > 0 ){
+            return true;
+            }else{
+
+                  return false;
+                  }
+        },
+
+        valid() {
+            var fname = document.getElementById('fname').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+        
+            var nameRGEX = /^[A-Za-z]+[\s][A-Za-z]+$/;
+            var emailRGEX = /^[\w @\w\.com\s]+$/;
+            var phoneRGEX = /^[0-9]{1,3}[\s][0-9]{3}[\s][0-9]{3}[\s][0-9]{4,6}$/;
+        
+            var nameRes = nameRGEX.test(fname);
+            var emailRes = emailRGEX.test(email);
+            var phoneRes = phoneRGEX.test(phone);
+            
+            if(nameRes == false) {
+                alert('Please enter a valid name');
+                return false;
+            }
+            if(emailRes == false) {
+                alert('Please enter a valid email');
+                return false;
+            }
+            if(phoneRes == false) {
+                alert('Please enter a valid Phone number');
+                return false;
+            }else{
+                alert('Your order has been confirmed');
+            }
+            return true;
+          },
+          
+                displayData() {
+                    fetch('https://webstorehero.herokuapp.com/collection/Lessons').then(
+                        function (response) {
+                            response.json().then(
+                                function (json) {
+                                    app.lessons = json
+                                }
+                            )
+                        }
+                    ),
+
+                    fetch('http://localhost:3000/Images').then(
+                        function (response) {
+                            response.json().then(
+                                function (json) {
+                                    app.images = json
+                                }
+                            )
+                        }
+                    )
+                },
+
+               
+            },
+
+            computed: {
+                cartItemCount() {
+                return this.cart.length || '';
+         },
+
+         val(){
+            if(this.input1 != '' && this.input3 != ''){
+            return true;
+            }else{
+                      return false;
+                  }
+                },
+            }
+
+        })
+        function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+  
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+    </script>
 </body>
+
 </html>

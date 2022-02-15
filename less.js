@@ -2,8 +2,7 @@ let app = new Vue ({
     el: '#app',
     data: {
         Sitename: 'After School Lessons',
-        showLesson: true,
-        ascending: true,
+        showLesson: true,     
         // list of json objects in an array, one json object for each lesson
         "Lessons": [
             {'id':1001, 'Subject': 'Maths',   'Location':'London', 'Cost': 100, 'Spaces':5, 'image':'photos/math.png'},
@@ -39,8 +38,6 @@ let app = new Vue ({
             this.showLesson = this.showLesson ? false : true;
         },
  
-  
-
         sortedAsc() {
             // the comparison function that defines the order
             function compare(a, b) {
@@ -169,7 +166,7 @@ let app = new Vue ({
                 },
         // search function 
         Searchas() {
-            // creating an instance of the array
+            // referencing the array
             let seeL = this.Lessons
             
             // search property
